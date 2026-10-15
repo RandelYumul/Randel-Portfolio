@@ -1,12 +1,15 @@
 import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
 import About from './components/About.jsx'
-import Projects from './components/Projects.jsx'
+import Education from './components/Education.jsx'
 import Skills from './components/Skills.jsx'
+import Projects from './components/Projects.jsx'
+import Experience from './components/Experience.jsx'
+import Certifications from './components/Certifications.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
 
-// One-page layout: every section is stacked here, top to bottom.
+// One-page layout: sections are stacked in the same order as the nav.
 // To add a section: make a component, give its <section> an id,
 // add it below, and add a link in src/data/portfolio.js -> navLinks.
 export default function App() {
@@ -16,8 +19,11 @@ export default function App() {
       <main>
         <Hero />
         <About />
-        <Projects />
+        <Education />
         <Skills />
+        <Projects />
+        <Experience />
+        <Certifications />
         <Contact />
       </main>
       <Footer />
