@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { projects } from '../data/portfolio.js'
 import ProjectMedia from './ProjectMedia.jsx'
+import Reveal from './Reveal.jsx'
 
 // Layout:
 //   PROJECTS  [ Title 1 ][ Title 2 ][ Title 3 ] →  (scrolls sideways)
@@ -41,7 +42,7 @@ export default function Projects() {
     <section id="projects" className="section alt">
       <div className="container">
         {/* Header: title + horizontal list of project names */}
-        <div className="projects-head">
+        <Reveal className="projects-head">
           <h2 className="section-title">Projects</h2>
 
           <div
@@ -67,9 +68,10 @@ export default function Projects() {
               </button>
             ))}
           </div>
-        </div>
+        </Reveal>
 
         {/* Big preview of the selected project */}
+        <Reveal delay={150}>
         <div
           id="project-panel"
           role="tabpanel"
@@ -129,6 +131,7 @@ export default function Projects() {
             </ul>
           )}
         </div>
+        </Reveal>
       </div>
     </section>
   )

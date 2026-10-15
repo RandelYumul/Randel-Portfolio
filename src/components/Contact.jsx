@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { profile, contactFormEndpoint } from '../data/portfolio.js'
+import Reveal from './Reveal.jsx'
 
 export default function Contact() {
   // 'idle' | 'sending' | 'sent' | 'error'
@@ -25,7 +26,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="section">
-      <div className="container narrow">
+      <Reveal className="container narrow">
         <h2 className="section-title">Contact</h2>
         <p>Open to internships and junior roles. Send me a message!</p>
 
@@ -60,7 +61,7 @@ export default function Contact() {
           <a href={profile.github} target="_blank" rel="noreferrer" className="btn btn-outline">GitHub</a>
           <a href={profile.linkedin} target="_blank" rel="noreferrer" className="btn btn-outline">LinkedIn</a>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }

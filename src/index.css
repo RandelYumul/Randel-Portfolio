@@ -655,7 +655,7 @@ section {
   margin: 0 0 12px;
 }
 
-/* ===== Timeline (Education + Experience) ===== */
+/* ===== Timeline (Education + Leadership) ===== */
 .timeline {
   list-style: none;
   margin: 0;
@@ -714,34 +714,201 @@ section {
   margin-bottom: 4px;
 }
 
-/* ===== Certifications ===== */
+/* ===== Certifications (image cards, 3 per row) ===== */
 .cert-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
 .cert-card {
-  background: var(--card);
+  position: relative; /* so the invisible button can cover it */
+  height: 100%;       /* cards in the same row line up */
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 20px;
+  background: var(--card);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.cert-card h3 {
-  margin: 0 0 4px;
+.cert-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: 0 16px 32px var(--shadow);
+}
+
+/* Invisible button stretched over the whole card (opens the viewer) */
+.cert-open {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.cert-open:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
+  border-radius: var(--radius);
+}
+
+/* Certificate picture: white "paper" area like LinkedIn */
+.cert-thumb {
+  aspect-ratio: 4 / 3;
+  padding: 12px;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.cert-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* show the WHOLE certificate, no cropping */
+  transition: transform 0.4s ease;
+}
+
+.cert-card:hover .cert-thumb img {
+  transform: scale(1.04);
+}
+
+/* Placeholder until you add the image */
+.cert-thumb-empty {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  text-align: center;
+  font-weight: 700;
   font-size: 1.05rem;
+  color: #235347;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(142, 182, 155, 0.35), transparent 60%),
+    #f4faf5;
+  border: 1px dashed #8eb69b;
+  border-radius: 8px;
+}
+
+.cert-thumb-empty small {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #235347;
+}
+
+.cert-body {
+  padding: 14px 16px 16px;
+}
+
+.cert-body h3 {
+  margin: 0 0 4px;
+  font-size: 0.98rem;
+  line-height: 1.35;
 }
 
 .cert-meta {
-  margin: 0 0 12px;
+  margin: 0;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
-.cert-card a {
-  font-weight: 600;
-  font-size: 0.9rem;
+.cert-date {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ===== Certificate pop-up viewer ===== */
+.cert-dialog {
+  width: min(960px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card);
+  color: var(--text);
+  overflow: auto;
+}
+
+.cert-dialog[open] {
+  animation: dialog-in 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.cert-dialog::backdrop {
+  background: rgba(5, 31, 32, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.cert-dialog-box {
+  position: relative;
+}
+
+.cert-full {
+  display: block;
+  width: 100%;
+  max-height: 70dvh;
+  object-fit: contain;
+  background: #fff;
+}
+
+.cert-thumb-empty.cert-full {
+  aspect-ratio: 4 / 3;
+  border-radius: 0;
+}
+
+.cert-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.cert-dialog-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px 20px 20px;
+}
+
+.cert-dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cert-dialog-info h3 {
+  margin: 0 0 4px;
 }
 
 /* ===== Contact ===== */
@@ -797,6 +964,176 @@ section {
 }
 
 /* =========================================================
+   ANIMATIONS (all use transform/opacity → smooth on phones)
+   ========================================================= */
+
+/* 1. Scroll reveal: <Reveal> starts hidden, slides up when on screen */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* 2. Hero entrance: text lines rise in one by one on page load */
+.hero-text > * {
+  animation: rise-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.hero-text > :nth-child(1) { animation-delay: 0.05s; }
+.hero-text > :nth-child(2) { animation-delay: 0.15s; }
+.hero-text > :nth-child(3) { animation-delay: 0.25s; }
+.hero-text > :nth-child(4) { animation-delay: 0.35s; }
+.hero-text > :nth-child(5) { animation-delay: 0.45s; }
+
+/* photo pops in, then the frame behind it slowly floats */
+.hero-media {
+  animation: pop-in 0.9s 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero-media::before {
+  animation: frame-float 6s 1.2s ease-in-out infinite alternate;
+}
+
+/* background image slowly zooms (a "Ken Burns" effect) */
+.hero-bg {
+  animation: slow-zoom 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes frame-float {
+  to {
+    transform: translate(-8px, -8px);
+  }
+}
+
+@keyframes slow-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+/* 3. Nav links: underline grows on hover, stays on the current section */
+.nav-links a {
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  transform: scaleX(1);
+}
+
+.nav-links a.active {
+  color: var(--text);
+}
+
+/* 4. Buttons lift on hover and press down on tap (works on touch too) */
+.btn,
+.project-tab,
+.theme-toggle {
+  transition:
+    transform 0.15s ease,
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active,
+.project-tab:active,
+.theme-toggle:active,
+.menu-btn:active {
+  transform: scale(0.96);
+}
+
+/* 5. Theme and menu icons spin in when they change */
+.icon-swap {
+  display: inline-block;
+  animation: spin-in 0.4s ease;
+}
+
+@keyframes spin-in {
+  from {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 6. Skill tags pop slightly on hover */
+.tags li {
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.tags li:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+}
+
+/* 7. Timeline dots glow softly */
+.timeline-item::before {
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 50%, transparent);
+  animation: dot-pulse 2.4s ease-out infinite;
+}
+
+@keyframes dot-pulse {
+  70%,
+  100% {
+    box-shadow: 0 0 0 10px transparent;
+  }
+}
+
+/* =========================================================
    RESPONSIVE
    Desktop  > 1024px : centered links in the nav
    ≤ 1024px : links move into a ☰ dropdown
@@ -831,6 +1168,12 @@ section {
 
   .nav-links.open {
     display: flex;
+    animation: menu-in 0.25s ease;
+  }
+
+  /* underline doesn't fit the dropdown style; highlight the text instead */
+  .nav-links a::after {
+    display: none;
   }
 
   .nav-links a {
@@ -843,6 +1186,11 @@ section {
 
 /* Tablets and phones */
 @media (max-width: 768px) {
+  .cert-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 per row */
+    gap: 14px;
+  }
+
   .hero {
     min-height: auto; /* don't force full-screen height on phones */
     padding: 56px 0 72px;
@@ -886,6 +1234,36 @@ section {
 
 /* Small phones */
 @media (max-width: 480px) {
+  /* still 2 per row on phones, just tighter */
+  .cert-grid {
+    gap: 10px;
+  }
+
+  .cert-thumb {
+    padding: 6px;
+  }
+
+  .cert-body {
+    padding: 10px 10px 12px;
+  }
+
+  .cert-body h3 {
+    font-size: 0.85rem;
+  }
+
+  .cert-meta {
+    font-size: 0.75rem;
+  }
+
+  .cert-date {
+    font-size: 0.68rem;
+  }
+
+  .cert-thumb-empty {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+
   .hero-actions .btn,
   .project-links .btn,
   .contact-links .btn,
@@ -904,6 +1282,17 @@ section {
   }
 }
 
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Respect visitors who turn off animations in their device settings */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -915,5 +1304,11 @@ section {
   *::after {
     transition: none !important;
     animation: none !important;
+  }
+
+  /* show everything right away instead of sliding in */
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }

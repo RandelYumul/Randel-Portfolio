@@ -37,7 +37,10 @@ export default function ThemeToggle() {
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       title={isDark ? 'Light mode' : 'Dark mode'}
     >
-      {isDark ? '☀' : '☾'}
+      {/* key makes the icon replay its spin animation on every switch */}
+      <span key={theme} className="icon-swap">
+        {isDark ? '☀' : '☾'}
+      </span>
     </button>
   )
 }

@@ -4,9 +4,9 @@
 export const profile = {
   name: 'Randel Yumul',
   initials: 'RY',
-  role: 'Computer Science Student & Web Developer',
-  tagline: 'I build clean, responsive web apps and I am learning backend and APIs.',
-  location: 'Philippines',
+  role: 'Computer Science Student & Frontend Developer',
+  tagline: 'I build web and mobile apps, from award-winning hackathon prototypes to full-stack projects, and I am growing my backend and API skills.',
+  location: 'Pampanga, Philippines',
   email: 'randel.angelo10@gmail.com',
   github: 'https://github.com/RandelYumul',
   linkedin: 'https://www.linkedin.com/in/yourusername',
@@ -28,61 +28,179 @@ export const navLinks = [
   { label: 'Education', href: '#education' },
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Experience', href: '#experience' },
+  { label: 'Leadership', href: '#leadership' },
   { label: 'Certifications', href: '#certifications' },
   { label: 'Contact', href: '#contact' },
 ]
 
 export const about = [
-  "I'm a 4th-year Computer Science student who enjoys turning ideas into working web apps.",
-  "Right now I'm strengthening my backend skills: REST APIs, databases, and authentication.",
-  'Outside of code, I enjoy gaming and music.',
+  "I'm a Computer Science student at Holy Angel University, a President's Lister and academic scholar, graduating in April 2027.",
+  'I love building things fast and building them for people. My hackathon work includes ALVIN, a disaster response app that placed 1st Runner-Up at the Cloudstaff AI Hackathon 2025, and AldawWave, a commute recommender that finished Top 10 out of 40 teams nationwide.',
+  "My focus is frontend and UI work with React, Next.js, Tailwind, and Flutter, and I'm growing my backend skills with PostgreSQL, Supabase, and REST APIs.",
+  'Outside of code, I lead and support student organizations like the AWS Learning Club and LOOP, and I enjoy gaming and music.',
 ]
 
 // Newest first.
 export const education = [
   {
     title: 'BS Computer Science',
-    place: 'Your University',
-    date: '2023 – Present',
-    details: 'Relevant coursework: Data Structures, Web Development, Databases.',
-  },
-  {
-    title: 'Senior High School – STEM',
-    place: 'Your Senior High School',
-    date: '2021 – 2023',
-    details: '',
+    place: 'Holy Angel University · Angeles City',
+    date: 'Expected graduation: April 2027',
+    details: "President's Lister for academic excellence · Academic Scholarship recipient",
   },
 ]
 
-// Internships, part-time jobs, org roles, freelance work. Newest first.
-export const experience = [
+// Leadership & Activities: org roles and student leadership. Newest first.
+export const leadership = [
   {
-    title: 'Web Development Intern',
-    place: 'Company Name',
-    date: '2026 – Present',
+    title: 'Executive Secretary for Operations',
+    place: 'AWS Learning Club – HAU',
+    date: 'Jun 2025 – Mar 2026',
     points: [
-      'What you built or improved.',
-      'A tool or skill you used (e.g. React, REST APIs).',
-      'A result, if you have one (e.g. "cut page load time by 30%").',
+      "Supported the organization's day-to-day operations, documentation, and coordination of activities and internal initiatives.",
+      'Helped organize club programs and kept communication and collaboration smooth among officers and members.',
+    ],
+  },
+  {
+    title: 'External Vice President',
+    place: 'League of Outstanding Programmers (LOOP)',
+    date: 'Jun 2024 – Jun 2025',
+    points: [
+      'Supported organizational activities, external coordination, and student-led initiatives.',
+      'Worked with officers and members to plan and run computing-related activities.',
+    ],
+  },
+  {
+    title: 'Events Management Staff',
+    place: 'CSC – SOC Alpha Foxes',
+    date: 'Jun 2024 – Jun 2025',
+    points: [
+      'Helped plan, organize, and run student events and activities for the School of Computing community.',
+    ],
+  },
+  {
+    title: 'External Treasurer',
+    place: 'Supreme Student Council',
+    date: 'Oct 2020 – Oct 2022',
+    points: [
+      'Managed financial records, monitored organization funds, and helped prepare budgets for student council activities.',
+      'Coordinated with officers to track expenses and keep the use of funds proper and transparent.',
     ],
   },
 ]
 
-// Certificates, courses, awards.
-// link: the certificate URL (Coursera, freeCodeCamp, etc.). Leave '' if none.
+// Certificates, courses, awards. Newest first. Shown 3 per row.
+// image: picture of the certificate. Put it in /public/certificates/
+//        and write 'certificates/name.jpg'. A screenshot or PDF export works.
+//        A full https:// link also works (e.g. a Credly badge image).
+//        Landscape images look best. Leave '' to show the issuer name instead.
+// pdf:   optional original PDF in /public/certificates/ ('certificates/name.pdf').
+//        Adds an "Open PDF" button in the viewer. Still add an image for the grid.
+// link:  the verify/credential URL (Credly, freeCodeCamp, etc.). Leave '' if none.
 export const certifications = [
   {
-    name: 'Certificate Name',
-    issuer: 'Issuing Organization',
-    date: '2026',
+    name: 'Data Analytics Essentials',
+    issuer: 'Cisco Networking Academy',
+    date: 'Mar 2026',
+    image: 'certificates/cisco-data-analytics-essentials.jpg',
+    pdf: 'certificates/cisco-data-analytics-essentials.pdf',
+    link: 'https://www.credly.com/badges/760c70d8-b4b6-4fb9-a5b0-c7447d0fc8ca',
+  },
+  {
+    name: 'AWS Academy Graduate – Cloud Foundations',
+    issuer: 'Amazon Web Services',
+    date: 'Mar 2026',
+    image: 'https://images.credly.com/images/e3541a0c-dd4a-4820-8052-5001006efc85/blob',
+    pdf: '',
+    link: 'https://www.credly.com/badges/0e84fc43-a2a6-4081-a4ce-ec79a6803497',
+  },
+  {
+    name: 'AI Fundamentals with IBM SkillsBuild',
+    issuer: 'Cisco Networking Academy',
+    date: 'Mar 2026',
+    image: 'certificates/cisco-ai-fundamentals-ibm-skillsbuild.jpg',
+    pdf: 'certificates/cisco-ai-fundamentals-ibm-skillsbuild.pdf',
+    link: 'https://www.credly.com/badges/42a3591f-14f1-499e-9428-295e9f884657',
+  },
+  {
+    name: 'Artificial Intelligence Fundamentals',
+    issuer: 'IBM SkillsBuild',
+    date: 'Mar 2026',
+    image: 'https://images.credly.com/images/82b908e1-fdcd-4785-9d32-97f11ccbcf08/image.png',
+    pdf: '',
+    link: 'https://www.credly.com/badges/369eab21-8790-4fcb-9e3a-30425f32fab8',
+  },
+  {
+    name: 'Cyber Threat Management',
+    issuer: 'Cisco Networking Academy',
+    date: 'Nov 2025',
+    image: 'certificates/cisco-cyber-threat-management.jpg',
+    pdf: 'certificates/cisco-cyber-threat-management.pdf',
+    link: 'https://www.credly.com/badges/1d07a7ad-b036-46f3-85c3-0210d6eef59b',
+  },
+  {
+    name: 'Endpoint Security',
+    issuer: 'Cisco Networking Academy',
+    date: 'Aug 2025',
+    image: 'certificates/cisco-endpoint-security.jpg',
+    pdf: 'certificates/cisco-endpoint-security.pdf',
+    link: 'https://www.credly.com/badges/de47fa72-1452-4f03-908b-0a1f7c550405',
+  },
+  {
+    name: 'Learning Data Analytics: 1 Foundations',
+    issuer: 'LinkedIn',
+    date: 'Jun 2025',
+    image: '',
+    pdf: '',
     link: '',
   },
   {
-    name: 'Another Certificate',
-    issuer: 'freeCodeCamp',
-    date: '2025',
+    name: 'Career Skills in Data Analytics',
+    issuer: 'LinkedIn',
+    date: 'Jun 2025',
+    image: '',
+    pdf: '',
     link: '',
+  },
+  {
+    name: 'Relational Database V8',
+    issuer: 'freeCodeCamp',
+    date: 'Feb 2025',
+    image: 'certificates/fcc-relational-database.jpg',
+    pdf: '',
+    link: 'https://freecodecamp.org/certification/randel_yumul/relational-database-v8',
+  },
+  {
+    name: 'JavaScript Essentials 1',
+    issuer: 'Cisco Networking Academy',
+    date: 'Oct 2024',
+    image: 'certificates/cisco-javascript-essentials-1.jpg',
+    pdf: 'certificates/cisco-javascript-essentials-1.pdf',
+    link: 'https://www.credly.com/badges/e62b1b70-c9b9-4f95-80ae-05e48fe834a2',
+  },
+  {
+    name: 'Work with Components in Figma',
+    issuer: 'Coursera',
+    date: 'Sep 2024',
+    image: 'certificates/coursera-figma-components.jpg',
+    pdf: 'certificates/coursera-figma-components.pdf',
+    link: 'https://coursera.org/verify/0MWYZ8TNFYDQ',
+  },
+  {
+    name: 'Legacy Responsive Web Design V8',
+    issuer: 'freeCodeCamp',
+    date: 'Sep 2024',
+    image: 'certificates/fcc-responsive-web-design.jpg',
+    pdf: '',
+    link: 'https://freecodecamp.org/certification/randel_yumul/responsive-web-design',
+  },
+  {
+    name: 'CompTIA IT Fundamentals+ (ITF+)',
+    issuer: 'CompTIA',
+    date: 'Nov 2023',
+    image: 'certificates/comptia-itf.jpg',
+    pdf: 'certificates/comptia-itf.pdf',
+    link: 'https://www.credly.com/badges/63063bec-3120-4c64-95aa-a6697ae41c30',
   },
 ]
 
@@ -102,10 +220,14 @@ export const certifications = [
 export const projects = [
   {
     title: 'Shifted',
-    badges: ['Team of 8', 'Hackathon', 'Godot'],
+    badges: ['Team of 8', 'Hackathon', 'Godot', 'May 2026'],
     description:
       "A narrative-driven psychological mystery puzzle game built in Godot 4, where the environment reacts dynamically to the player's mental state and performance.",
     highlights: [
+      {
+        label: 'My Role',
+        text: 'Game Developer, engineering core gameplay, environment, and audio systems in Godot 4.',
+      },
       {
         label: 'The Kitchen Scene',
         text: 'Engineered a fast-paced collection minigame, scripting a balanced spawning system for ingredients and obstacles.',
@@ -132,10 +254,14 @@ export const projects = [
   },
   {
     title: 'ALVIN',
-    badges: ['Hackathon', '1st Runner Up', 'Next.js', 'Tailwind', 'Leaflet', 'AI'],
+    badges: ['Hackathon', '1st Runner-Up', 'Next.js', 'Tailwind', 'Leaflet', 'AI'],
     description:
       'Assist, Locate, Verify, Inform, Navigate: a disaster response app built in 2 days at the Cloudstaff AI Hackathon 2025, made to help communities when typhoons, earthquakes, and floods hit.',
     highlights: [
+      {
+        label: 'My Role',
+        text: 'Frontend Developer. Implemented the full-stack web interface with Next.js, Tailwind CSS, and Leaflet, connecting the user experience to AI workflows powered by n8n and Dify.',
+      },
       {
         label: 'Real-Time Monitoring',
         text: 'Tracks typhoons, earthquakes, and evacuation centers on a Leaflet map, with navigation links to each center.',
@@ -154,6 +280,29 @@ export const projects = [
       },
     ],
     links: [{ label: 'View repo', url: 'https://github.com/jimvdz/cs-hackathon' }],
+    video: '',
+    image: '',
+  },
+  {
+    title: 'AldawWave',
+    badges: ['Competition', 'Top 10 of 40', 'Gemini API', 'Google Maps'],
+    description:
+      'A data-driven commute recommender web app that helps commuters avoid heat stress by suggesting the best time to leave, built over Sep – Nov 2025.',
+    highlights: [
+      {
+        label: 'My Role',
+        text: 'Frontend Developer who directed the team to a Top 10 finish among 40 teams nationwide.',
+      },
+      {
+        label: 'Predictive Model',
+        text: 'Worked with the team on a model using historical PAGASA data, combined with the OpenMeteo and Google Maps APIs to calculate optimal departure times.',
+      },
+      {
+        label: 'AI Recommendations',
+        text: 'Helped implement the Google Gemini API to give personalized travel tips based on real-time heat index forecasts and crowd density.',
+      },
+    ],
+    links: [], // add a repo or live link here if you have one
     video: '',
     image: '',
   },
@@ -249,7 +398,7 @@ export const projects = [
     title: 'FundBuddy',
     badges: ['Collaboration', 'Team of 4', 'Flutter', 'Supabase', 'Gemini API'],
     description:
-      'A mobile finance tracker for student organizations that replaces manual spreadsheets and paper logs with a secure, shared, real-time platform.',
+      'A mobile finance tracker that streamlines liquidation and reporting for 60+ student organizations, replacing manual spreadsheets and paper logs with a secure, shared, real-time platform.',
     highlights: [
       {
         label: 'My Role',
@@ -258,6 +407,10 @@ export const projects = [
       {
         label: 'AI Receipt Scanning',
         text: 'Uses the Google Gemini API to read a receipt photo and fill in the seller, control number, amount, date, and description automatically.',
+      },
+      {
+        label: 'Audit-Ready Logic',
+        text: 'System rules follow the Commission on Financial Audit – Holy Angel University (CFA-HAU) guidelines for financial transparency and accountability.',
       },
       {
         label: 'Real-Time Dashboard',
@@ -309,9 +462,14 @@ export const projects = [
 ]
 
 export const skills = [
-  { group: 'Frontend', items: ['HTML', 'CSS', 'JavaScript', 'React'] },
-  { group: 'Backend (learning)', items: ['Node.js', 'Express', 'REST APIs', 'SQL'] },
-  { group: 'Tools', items: ['Git', 'GitHub', 'VS Code', 'Figma'] },
+  { group: 'Languages', items: ['JavaScript', 'Python', 'Java', 'Dart', 'HTML', 'CSS'] },
+  { group: 'Frameworks', items: ['React', 'Next.js', 'Tailwind CSS', 'Flutter', 'Express', 'Godot 4'] },
+  { group: 'Databases & Backend', items: ['PostgreSQL', 'SQL', 'Supabase', 'REST APIs'] },
+  { group: 'Tools & Design', items: ['Git', 'GitHub', 'Figma', 'VS Code', 'Cisco Packet Tracer'] },
+  {
+    group: 'Professional',
+    items: ['Critical Thinking', 'Analytical Thinking', 'Adaptability', 'Teamwork', 'Leadership'],
+  },
 ]
 
 // Contact form: create a free form at https://formspree.io and paste its endpoint.

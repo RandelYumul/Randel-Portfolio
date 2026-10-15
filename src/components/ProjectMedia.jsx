@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // Decides WHAT to show inside the project screen, in this order:
 //   1. video  → your own .mp4/.webm file, or a YouTube link
@@ -44,30 +44,16 @@ export default function ProjectMedia({ project }) {
       return (
         <iframe
           className="screen-media"
-          src={`https://www.youtube-nocookie.com/embed/${youTubeId}?rel=0`}
+          /* autoplay needs mute=1; loop needs playlist=<same id> */
+          src={`https://www.youtube-nocookie.com/embed/${youTubeId}?autoplay=1&mute=1&loop=1&playlist=${youTubeId}&rel=0&playsinline=1`}
           title={`${title} video`}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-          loading="lazy"
         />
       )
     }
 
-    // Don't autoplay for visitors who turned off animations
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    return (
-      <video
-        className="screen-media"
-        src={toSrc(video)}
-        poster={image ? toSrc(image) : undefined}
-        autoPlay={!reduceMotion}
-        muted
-        loop
-        playsInline
-        controls
-        preload="metadata"
-      />
-    )
+    return <AutoPlayVideo src={toSrc(video)} poster={image ? toSrc(image) : undefined} />
   }
 
   // 2 + 3. Image (yours first, then GitHub's)
@@ -90,5 +76,49 @@ export default function ProjectMedia({ project }) {
       <span>{title}</span>
       <small>Add an image, video, or GitHub repo link in portfolio.js</small>
     </div>
+  )
+}
+
+// Video that plays by itself while it is on screen, and pauses when you scroll away
+// (saves battery and data on phones).
+function AutoPlayVideo({ src, poster }) {
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const video = ref.current
+    if (!video) return
+
+    // Browsers only autoplay MUTED videos. React doesn't always set "muted"
+    // on the real element, so we set it directly to be safe.
+    video.muted = true
+
+    const play = () => video.play().catch(() => {}) // if blocked, the controls still work
+
+    if (!('IntersectionObserver' in window)) {
+      play()
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting ? play() : video.pause()),
+      { threshold: 0.25 }
+    )
+    observer.observe(video)
+    return () => observer.disconnect()
+  }, [src])
+
+  return (
+    <video
+      ref={ref}
+      className="screen-media"
+      src={src}
+      poster={poster}
+      autoPlay
+      muted
+      loop
+      playsInline /* iPhones: play inside the page, not fullscreen */
+      controls
+      preload="auto"
+    />
   )
 }
