@@ -1,0 +1,507 @@
+/* =========================================================
+   HERO (home section) — all of its styles live in this file
+   Layers, back to front:
+     hero-bg (your image, tinted) → overlay → glowing orbs → content
+   ========================================================= */
+
+/* Accent gradient for the typing text, per theme */
+:root,
+[data-theme='dark'] {
+  --hero-accent: linear-gradient(90deg, #8eb69b 0%, #daf1de 100%);
+}
+
+[data-theme='light'] {
+  --hero-accent: linear-gradient(90deg, #163832 0%, #235347 100%);
+}
+
+.hero {
+  position: relative;
+  isolation: isolate; /* keeps all the z-index layers inside the hero */
+  overflow: hidden;
+  min-height: calc(100vh - var(--nav-height));
+  display: flex;
+  align-items: center;
+  padding: clamp(48px, 8vh, 96px) 0 clamp(72px, 10vh, 120px);
+  background: var(--hero-tint);
+}
+
+/* ---------- Background layers ---------- */
+
+/* Your image: keeps its light/dark details but takes the palette colors */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: luminosity;
+  opacity: var(--hero-img-opacity);
+  animation: slow-zoom 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Darker in the middle (behind the text), fades into the next section at the bottom */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(to bottom, transparent 78%, var(--bg) 100%),
+    radial-gradient(
+      ellipse 70% 60% at 50% 42%,
+      color-mix(in srgb, var(--bg) 90%, transparent) 0%,
+      color-mix(in srgb, var(--bg) 72%, transparent) 60%,
+      color-mix(in srgb, var(--bg) 50%, transparent) 100%
+    );
+}
+
+/* Big blurry glowing circles that drift around slowly */
+.hero-orb {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  animation: orb-drift 18s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+  width: 420px;
+  height: 420px;
+  top: -140px;
+  left: -140px;
+  background: radial-gradient(circle, var(--primary), transparent 70%);
+  opacity: 0.45;
+}
+
+.orb-2 {
+  width: 380px;
+  height: 380px;
+  top: 30%;
+  right: -140px;
+  background: radial-gradient(circle, #235347, transparent 70%);
+  opacity: 0.7;
+  animation-duration: 22s;
+  animation-delay: -6s;
+}
+
+/* kept away from the bottom edge: a blur cut off by the edge shows a hard line */
+.orb-3 {
+  width: 320px;
+  height: 320px;
+  top: 8%;
+  left: 55%;
+  background: radial-gradient(circle, #8eb69b, transparent 70%);
+  opacity: 0.25;
+  animation-duration: 26s;
+  animation-delay: -12s;
+}
+
+/* Small glowing dot floating on the left */
+.hero-dot {
+  position: absolute;
+  top: 18%;
+  left: 6%;
+  z-index: -1;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 24px 6px color-mix(in srgb, var(--primary) 60%, transparent);
+  animation: dot-float 5s ease-in-out infinite alternate;
+}
+
+/* ---------- Content ---------- */
+
+.hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* "Hi! I'm Randel · ..." pill with a live dot */
+.hero-intro {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--card) 55%, transparent);
+  backdrop-filter: blur(6px);
+  font-weight: 600;
+  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+  animation: rise-in 0.7s 0.05s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero-intro-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 60%, transparent);
+  animation: dot-pulse 2s ease-out infinite;
+}
+
+.hero-title {
+  margin: 0 0 18px;
+  font-family: var(--font-accent); /* Syne: the wide display font */
+  font-size: clamp(2.3rem, 7vw, 4.9rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.hero-title-line {
+  display: block;
+  animation: rise-in 0.8s 0.15s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* The line that types itself */
+.hero-typing {
+  display: block;
+  min-height: 1.1em; /* keeps the space even while the text is empty */
+  animation: rise-in 0.8s 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero-typing-text {
+  background: var(--hero-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; /* the gradient shows through the letters */
+}
+
+.hero-caret {
+  display: inline-block;
+  width: 0.08em;
+  height: 0.85em;
+  margin-left: 0.08em;
+  vertical-align: -0.06em;
+  background: var(--primary);
+  animation: caret-blink 1s steps(1) infinite;
+}
+
+.hero-tagline {
+  max-width: 560px;
+  margin: 0 auto;
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: var(--muted);
+  animation: rise-in 0.8s 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+  animation: rise-in 0.8s 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* ---------- Photo card ---------- */
+
+.hero-card-wrap {
+  position: relative;
+  width: clamp(200px, 24vw, 270px);
+  aspect-ratio: 4 / 5;
+  margin-top: clamp(44px, 7vh, 72px);
+  animation: pop-in 1s 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* gently bobs up and down */
+.hero-card-float {
+  position: absolute;
+  inset: 0;
+  animation: card-float 6s ease-in-out infinite alternate;
+}
+
+/* the second card peeking out behind */
+.hero-card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  background: color-mix(in srgb, var(--primary) 40%, var(--card));
+  opacity: 0.55;
+  transform: translate(-16px, 12px) rotate(-8deg);
+  animation: back-sway 7s ease-in-out infinite alternate;
+}
+
+.hero-card {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid color-mix(in srgb, var(--primary) 45%, transparent);
+  background: linear-gradient(160deg, #8eb69b 0%, #235347 100%);
+  box-shadow:
+    0 30px 60px var(--shadow),
+    0 0 80px color-mix(in srgb, var(--primary) 30%, transparent);
+  transform: rotate(5deg);
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.hero-card:hover {
+  transform: rotate(0deg) scale(1.03);
+}
+
+.hero-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* a light "shine" that sweeps across the card every few seconds */
+.hero-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.28) 50%, transparent 65%);
+  transform: translateX(-100%);
+  animation: shine 6s 1.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* shown until you add a photo */
+.hero-card-initials {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-heading);
+  font-size: clamp(4rem, 9vw, 6rem);
+  font-weight: 800;
+  color: #daf1de;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Spinning "scroll" badge ---------- */
+
+.scroll-badge {
+  position: absolute;
+  right: -38px;
+  bottom: -30px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  text-decoration: none;
+  box-shadow: 0 10px 30px var(--shadow);
+}
+
+.scroll-badge-ring {
+  position: absolute;
+  inset: 4px;
+  animation: spin 14s linear infinite;
+}
+
+.scroll-badge-ring text {
+  fill: var(--text);
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.scroll-badge-arrow {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-weight: 700;
+  animation: arrow-bounce 1.8s ease-in-out infinite;
+}
+
+.scroll-badge:hover .scroll-badge-ring {
+  animation-duration: 4s; /* spins faster on hover */
+}
+
+/* ---------- Keyframes ---------- */
+
+@keyframes orb-drift {
+  to {
+    transform: translate(60px, 40px) scale(1.15);
+  }
+}
+
+@keyframes dot-float {
+  to {
+    transform: translate(10px, -26px);
+  }
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes card-float {
+  to {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes back-sway {
+  to {
+    transform: translate(-22px, 16px) rotate(-11deg);
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  35%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes arrow-bounce {
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+/* ---------- Tablets and phones: no jumping while typing ---------- */
+/* Syne is very wide, so long words ("Hackathon Enthusiast") need 2 lines here.
+   Always reserving 2 lines of space means the page below never jumps. */
+@media (max-width: 1024px) {
+  .hero-typing {
+    min-height: 2.1em;
+  }
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+  }
+
+  /* Syne is wide: a bit smaller on phones so "CS Student &" stays on one line */
+  .hero-title {
+    font-size: clamp(1.8rem, 8vw, 3.4rem);
+  }
+
+  .orb-1 {
+    width: 260px;
+    height: 260px;
+  }
+
+  .orb-2 {
+    width: 240px;
+    height: 240px;
+  }
+
+  .orb-3 {
+    display: none; /* fewer blurry layers = smoother on phones */
+  }
+
+  .hero-dot {
+    top: 8%;
+    width: 14px;
+    height: 14px;
+  }
+
+  .scroll-badge {
+    right: -26px;
+    bottom: -24px;
+    width: 88px;
+    height: 88px;
+  }
+
+  .scroll-badge-arrow {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* smaller pill so "Hi! I'm Randel · Based in Pampanga, PH" fits on one line */
+  .hero-intro {
+    gap: 8px;
+    padding: 5px 12px;
+    font-size: 0.78rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ---------- Desktop only: exactly one screen tall ---------- */
+/* Everything is sized from the screen's width (vw) and height (vh) so it
+   always fits: title on 2 lines, card shrinks to whatever height is left. */
+@media (min-width: 1025px) {
+  .hero {
+    height: calc(100svh - var(--nav-height)); /* svh = the real visible screen height */
+    min-height: 560px; /* don't squash on very short windows */
+    padding: clamp(24px, 4vh, 56px) 0;
+  }
+
+  /* let the hero use up to ~90% of the screen instead of the normal 1100px box */
+  .hero-inner {
+    max-width: 92vw;
+  }
+
+  .hero-intro {
+    margin-bottom: clamp(10px, 2vh, 20px);
+  }
+
+  .hero-title {
+    font-size: clamp(2.6rem, 4.8vw, 7rem); /* Syne is wide: longest typed word ≈ 83% of the screen width */
+    margin-bottom: clamp(10px, 2vh, 20px);
+  }
+
+  /* each line stays on one line → the title is always exactly 2 lines */
+  .hero-title-line,
+  .hero-typing {
+    white-space: nowrap;
+  }
+
+  .hero-tagline {
+    max-width: 680px;
+  }
+
+  .hero-actions {
+    margin-top: clamp(14px, 2.6vh, 28px);
+  }
+
+  /* card height = what's left of the screen; width follows the 4:5 shape */
+  .hero-card-wrap {
+    width: auto;
+    height: clamp(140px, 26vh, 300px);
+    margin-top: clamp(22px, 4vh, 48px);
+  }
+
+  .scroll-badge {
+    right: -34px;
+    bottom: -22px;
+    width: 92px;
+    height: 92px;
+  }
+
+  .scroll-badge-arrow {
+    width: 34px;
+    height: 34px;
+  }
+
+  .hero-card-initials {
+    font-size: clamp(3rem, 7vh, 6rem);
+  }
+}

@@ -6,18 +6,29 @@ export const profile = {
   initials: 'RY',
   role: 'Computer Science Student & Frontend Developer',
   tagline: 'I build web and mobile apps, from award-winning hackathon prototypes to full-stack projects, and I am growing my backend and API skills.',
+
+  // HOME SECTION TEXT
+  intro: "Hi! I'm Randel · Based in Pampanga, PH", // small pill above the big title
+  headline: 'CS Student &', // first line of the big title
+  // typed out one by one; all roles from the CV. Keep each under ~20 letters so it fits on one line
+  typingWords: ['Frontend Developer', 'Mobile App Developer', 'Game Developer', 'Hackathon Enthusiast'],
   location: 'Pampanga, Philippines',
   email: 'randel.angelo10@gmail.com',
   github: 'https://github.com/RandelYumul',
   linkedin: 'https://www.linkedin.com/in/yourusername',
-  resume: '', // put resume.pdf in /public and write 'resume.pdf' here
+  // CV: put your PDF at public/files/Randel-Yumul-CV.pdf (same name) and the
+  // "Download CV" buttons work. Set to '' to hide the buttons.
+  resume: 'files/Randel-Yumul-CV.pdf',
 
   // HERO IMAGES (put the files in /public/images/)
   // heroBackground: big background behind the hero. It gets tinted with the palette.
   // photo: the image on the right side (your photo, an avatar, or an illustration).
   // Leave '' to use the default (palette gradient / placeholder box).
   heroBackground: 'images/hero-bg.jpg', // e.g. 'images/hero-bg.jpg'
-  photo: '',          // e.g. 'images/profile.jpg'
+  photo: 'images/Randel-main.jpg',          // e.g. 'images/profile.jpg'
+  // ABOUT SECTION PHOTO (right side). Use a DIFFERENT photo from the home card,
+  // e.g. you at a hackathon or with your org. Leave '' to show only the text.
+  aboutPhoto: 'images/Randel-about.png',     // e.g. 'images/about.jpg'
 }
 
 // The order here = the order in the nav.
@@ -34,7 +45,7 @@ export const navLinks = [
 ]
 
 export const about = [
-  "I'm a Computer Science student at Holy Angel University, a President's Lister and academic scholar, graduating in April 2027.",
+  "I'm a Computer Science student at Holy Angel University.",
   'I love building things fast and building them for people. My hackathon work includes ALVIN, a disaster response app that placed 1st Runner-Up at the Cloudstaff AI Hackathon 2025, and AldawWave, a commute recommender that finished Top 10 out of 40 teams nationwide.',
   "My focus is frontend and UI work with React, Next.js, Tailwind, and Flutter, and I'm growing my backend skills with PostgreSQL, Supabase, and REST APIs.",
   'Outside of code, I lead and support student organizations like the AWS Learning Club and LOOP, and I enjoy gaming and music.',
@@ -281,7 +292,7 @@ export const projects = [
     ],
     links: [{ label: 'View repo', url: 'https://github.com/jimvdz/cs-hackathon' }],
     video: '',
-    image: '',
+    image: 'projects/alvin.jpg',
   },
   {
     title: 'AldawWave',
@@ -422,7 +433,7 @@ export const projects = [
       },
     ],
     links: [{ label: 'View repo', url: 'https://github.com/JReshley/FundBuddy' }],
-    video: '',
+    video: 'projects/fundbuddy.mp4',
     image: '',
   },
   {
@@ -456,7 +467,7 @@ export const projects = [
       },
       { label: 'View repo', url: 'https://github.com/shokomori/Virtuo-Hero' },
     ],
-    video: '',
+    video: 'projects/virtuohero.mp4',
     image: '',
   },
 ]
@@ -464,11 +475,12 @@ export const projects = [
 export const skills = [
   { group: 'Languages', items: ['JavaScript', 'Python', 'Java', 'Dart', 'HTML', 'CSS'] },
   { group: 'Frameworks', items: ['React', 'Next.js', 'Tailwind CSS', 'Flutter', 'Express', 'Godot 4'] },
-  { group: 'Databases & Backend', items: ['PostgreSQL', 'SQL', 'Supabase', 'REST APIs'] },
+  { group: 'Databases & Backend', items: ['PostgreSQL', 'SQL', 'Supabase'] },
   { group: 'Tools & Design', items: ['Git', 'GitHub', 'Figma', 'VS Code', 'Cisco Packet Tracer'] },
   {
     group: 'Professional',
     items: ['Critical Thinking', 'Analytical Thinking', 'Adaptability', 'Teamwork', 'Leadership'],
+    soft: true, // shown as the moving strip instead of boxes
   },
 ]
 

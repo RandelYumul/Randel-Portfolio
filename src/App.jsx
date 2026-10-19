@@ -8,6 +8,7 @@ import Leadership from './components/Leadership.jsx'
 import Certifications from './components/Certifications.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
+import CursorGlow from './components/CursorGlow.jsx'
 
 // One-page layout: sections are stacked in the same order as the nav.
 // To add a section: make a component, give its <section> an id,
@@ -15,6 +16,7 @@ import Footer from './components/Footer.jsx'
 export default function App() {
   return (
     <>
+      <CursorGlow />
       <Navbar />
       <main>
         <Hero />
