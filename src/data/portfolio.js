@@ -3,19 +3,19 @@
 
 export const profile = {
   name: 'Randel Yumul',
-  initials: 'RY',
+  initials: 'RALY',
   role: 'Computer Science Student & Frontend Developer',
   tagline: 'I build web and mobile apps, from award-winning hackathon prototypes to full-stack projects, and I am growing my backend and API skills.',
 
   // HOME SECTION TEXT
-  intro: "Hi! I'm Randel · Based in Pampanga, PH", // small pill above the big title
+  intro: "Hi! I'm Randel Yumul · Based in Pampanga, PH", // small pill above the big title
   headline: 'CS Student &', // first line of the big title
   // typed out one by one; all roles from the CV. Keep each under ~20 letters so it fits on one line
   typingWords: ['Frontend Developer', 'Mobile App Developer', 'Game Developer', 'Hackathon Enthusiast'],
   location: 'Pampanga, Philippines',
   email: 'randel.angelo10@gmail.com',
   github: 'https://github.com/RandelYumul',
-  linkedin: 'https://www.linkedin.com/in/yourusername',
+  linkedin: 'https://www.linkedin.com/in/randel-yumul/',
   // CV: put your PDF at public/files/Randel-Yumul-CV.pdf (same name) and the
   // "Download CV" buttons work. Set to '' to hide the buttons.
   resume: 'files/Randel-Yumul-CV.pdf',
@@ -476,7 +476,7 @@ export const skills = [
   { group: 'Languages', items: ['JavaScript', 'Python', 'Java', 'Dart', 'HTML', 'CSS'] },
   { group: 'Frameworks', items: ['React', 'Next.js', 'Tailwind CSS', 'Flutter', 'Express', 'Godot 4'] },
   { group: 'Databases & Backend', items: ['PostgreSQL', 'SQL', 'Supabase'] },
-  { group: 'Tools & Design', items: ['Git', 'GitHub', 'Figma', 'VS Code', 'Cisco Packet Tracer'] },
+  { group: 'Tools & Design', items: ['Git', 'GitHub', 'Figma', 'VS Code'] },
   {
     group: 'Professional',
     items: ['Critical Thinking', 'Analytical Thinking', 'Adaptability', 'Teamwork', 'Leadership'],

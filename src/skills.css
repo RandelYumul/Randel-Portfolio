@@ -229,9 +229,9 @@
     gap: 10px;
   }
 
-  /* 3 boxes per row */
+  /* 4 boxes per row */
   .skill-box {
-    width: calc((100% - 20px) / 3);
+    width: calc((100% - 30px) / 4);
     border-radius: 16px;
     gap: 8px;
   }
@@ -248,7 +248,25 @@
   }
 
   .skill-name {
-    font-size: 0.72rem;
+    font-size: 0.66rem;
+  }
+
+  .skill-box {
+    padding: 8px 4px;
+  }
+
+  .skill-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .skill-icon img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .skill-initials {
+    font-size: 0.85rem;
   }
 
   /* tabs become one row you can swipe sideways */
@@ -285,5 +303,67 @@
 
   .marquee-item[aria-hidden='true'] {
     display: none; /* hide the duplicate copy */
+  }
+}
+
+/* =========================================================
+   Fit in one screen on laptops/desktops:
+   7 boxes per row (3 rows), box size follows the screen height
+   ========================================================= */
+@media (min-width: 1025px) {
+  .skills-inner {
+    --box: clamp(86px, 12.5vh, 132px);
+    --box-gap: clamp(10px, 1.6vh, 16px);
+  }
+
+  .skills-sub {
+    margin-bottom: clamp(14px, 2.6vh, 28px);
+  }
+
+  .skill-tabs {
+    margin-bottom: clamp(16px, 3.2vh, 36px);
+  }
+
+  .skill-grid {
+    gap: var(--box-gap);
+    max-width: calc(7 * var(--box) + 6 * var(--box-gap)); /* exactly 7 per row */
+  }
+
+  .skill-box {
+    width: var(--box);
+    gap: calc(var(--box) * 0.08);
+    padding: 8px 6px;
+    border-radius: calc(var(--box) * 0.15);
+  }
+
+  .skill-icon {
+    width: calc(var(--box) * 0.4);
+    height: calc(var(--box) * 0.4);
+    border-radius: calc(var(--box) * 0.12);
+  }
+
+  .skill-icon img {
+    width: 60%;
+    height: 60%;
+  }
+
+  .skill-initials {
+    font-size: calc(var(--box) * 0.11);
+  }
+
+  .skill-name {
+    font-size: clamp(0.72rem, 1.1vh, 0.82rem);
+  }
+
+  .soft-skills {
+    margin-top: clamp(18px, 3.6vh, 48px);
+  }
+
+  .soft-label {
+    margin-bottom: clamp(8px, 1.4vh, 14px);
+  }
+
+  .marquee-item {
+    padding: clamp(7px, 1.2vh, 10px) 20px;
   }
 }

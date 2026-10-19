@@ -1,0 +1,371 @@
+/* =========================================================
+   LEADERSHIP — two-sided timeline that fills as you scroll
+   ========================================================= */
+
+/* cards slide in from the sides; clip so they never cause sideways scrolling */
+#leadership {
+  overflow-x: clip;
+}
+
+.lead-title,
+.lead-sub {
+  text-align: center;
+}
+
+.lead-title {
+  margin-bottom: 8px;
+}
+
+.lead-sub {
+  margin: 0 0 clamp(36px, 6vh, 64px);
+  color: var(--muted);
+}
+
+.lead-list {
+  --dot-col: 64px; /* width of the middle column (line + dots) */
+  position: relative;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1000px;
+  display: grid;
+  gap: clamp(28px, 5vh, 48px);
+}
+
+/* ---------- The center line ---------- */
+.lead-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  margin-left: -1px;
+  border-radius: 2px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+/* the bright part grows with --progress (0 → 1), set from JavaScript on scroll */
+.lead-line-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--primary), var(--text));
+  transform-origin: top;
+  transform: scaleY(var(--progress, 0));
+}
+
+/* ---------- One row: card | dot | date ---------- */
+.lead-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--dot-col) minmax(0, 1fr);
+  align-items: center;
+}
+
+/* the row itself doesn't fade; its parts animate separately (below) */
+.lead-row.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.lead-row.left .lead-card { grid-column: 1; grid-row: 1; }
+.lead-row.left .lead-date { grid-column: 3; grid-row: 1; text-align: left; }
+.lead-row.right .lead-card { grid-column: 3; grid-row: 1; }
+.lead-row.right .lead-date { grid-column: 1; grid-row: 1; text-align: right; }
+.lead-dot { grid-column: 2; grid-row: 1; }
+
+/* ---------- The card ---------- */
+.lead-card {
+  position: relative;
+  padding: 22px 24px 20px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--card);
+  overflow: hidden;
+  /* start hidden, slid toward its own side */
+  opacity: 0;
+  transform: translateX(var(--from, -60px)) rotate(var(--tilt, -2deg));
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.lead-row.right .lead-card {
+  --from: 60px;
+  --tilt: 2deg;
+}
+
+/* accent bar along the top that grows when the role becomes "active" */
+.lead-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--text));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.lead-row.right .lead-card::before {
+  transform-origin: right;
+}
+
+/* big faint number in the corner */
+.lead-num {
+  position: absolute;
+  top: 6px;
+  right: 16px;
+  font-family: var(--font-accent);
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--border);
+  opacity: 0.55;
+  pointer-events: none;
+  transition: color 0.4s ease, transform 0.4s ease;
+}
+
+.lead-card h3 {
+  margin: 0 0 4px;
+  padding-right: 64px; /* keep clear of the big number */
+  font-size: 1.12rem;
+  line-height: 1.3;
+}
+
+.lead-place {
+  margin: 0 0 12px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--primary);
+}
+
+.lead-points {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+
+.lead-points li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.lead-points li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+}
+
+/* hover: lift + glow */
+.lead-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary);
+  box-shadow:
+    0 18px 36px var(--shadow),
+    0 0 0 4px color-mix(in srgb, var(--primary) 12%, transparent);
+}
+
+.lead-card:hover .lead-num {
+  transform: scale(1.12) rotate(-6deg);
+}
+
+/* date shown only on phones (inside the card) */
+.lead-date-inline {
+  display: none;
+}
+
+/* ---------- The date on the other side ---------- */
+.lead-date {
+  margin: 0;
+  padding: 0 8px;
+  font-family: var(--font-accent);
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateX(calc(var(--from, -60px) * -0.6));
+  transition:
+    opacity 0.7s ease 0.25s,
+    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.25s,
+    color 0.4s ease;
+}
+
+.lead-row.right .lead-date {
+  --from: 60px;
+}
+
+/* ---------- The dot on the line ---------- */
+.lead-dot {
+  justify-self: center;
+  position: relative;
+  z-index: 1;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid var(--border);
+  background: var(--bg);
+  transform: scale(0);
+  transition:
+    transform 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) 0.15s, /* little bounce */
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+/* ring that ripples out from an active dot */
+.lead-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  opacity: 0;
+}
+
+/* ---------- When the row scrolls into view ---------- */
+.lead-row.is-visible .lead-card,
+.lead-row.is-visible .lead-date {
+  opacity: 1;
+  transform: none;
+}
+
+.lead-row.is-visible .lead-dot {
+  transform: scale(1);
+}
+
+/* keep the hover lift working after the slide-in */
+.lead-row.is-visible .lead-card:hover {
+  transform: translateY(-6px);
+}
+
+/* ---------- When the scroll line reaches the dot ---------- */
+.lead-row[data-active='true'] .lead-dot {
+  border-color: var(--primary);
+  background: var(--primary);
+}
+
+.lead-row[data-active='true'] .lead-dot::after {
+  animation: lead-ripple 2s ease-out infinite;
+}
+
+.lead-row[data-active='true'] .lead-card::before {
+  transform: scaleX(1);
+}
+
+.lead-row[data-active='true'] .lead-num {
+  color: var(--primary);
+}
+
+.lead-row[data-active='true'] .lead-date {
+  color: var(--text);
+}
+
+@keyframes lead-ripple {
+  from {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2.6);
+  }
+}
+
+/* ---------- Tablets & phones: one line on the left ---------- */
+@media (max-width: 768px) {
+  .lead-list {
+    --dot-col: 32px;
+    gap: 24px;
+  }
+
+  .lead-line {
+    left: 16px; /* center of the 32px column */
+  }
+
+  .lead-row,
+  .lead-row.left,
+  .lead-row.right {
+    grid-template-columns: var(--dot-col) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .lead-row .lead-dot {
+    grid-column: 1;
+    margin-top: 26px;
+  }
+
+  .lead-row.left .lead-card,
+  .lead-row.right .lead-card {
+    grid-column: 2;
+    --from: 40px;
+    --tilt: 1deg;
+  }
+
+  .lead-row.right .lead-card::before {
+    transform-origin: left;
+  }
+
+  .lead-date {
+    display: none;
+  }
+
+  .lead-date-inline {
+    display: block;
+    margin: 0 0 6px;
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .lead-card {
+    padding: 18px 18px 16px;
+  }
+
+  .lead-num {
+    font-size: 2.4rem;
+  }
+
+  .lead-card h3 {
+    padding-right: 48px;
+    font-size: 1.02rem;
+  }
+}
+
+/* ---------- No animations wanted ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .lead-card,
+  .lead-date,
+  .lead-dot {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .lead-card::before {
+    transition: none;
+  }
+
+  .lead-row[data-active='true'] .lead-dot::after {
+    animation: none;
+  }
+
+  .lead-card:hover,
+  .lead-row.is-visible .lead-card:hover {
+    transform: none;
+  }
+}

@@ -449,7 +449,7 @@
    always fits: title on 2 lines, card shrinks to whatever height is left. */
 @media (min-width: 1025px) {
   .hero {
-    height: calc(100svh - var(--nav-height)); /* svh = the real visible screen height */
+    height: calc(100svh - var(--nav-height) - 1px); /* svh = the real visible screen height; 1px = nav border */
     min-height: 560px; /* don't squash on very short windows */
     padding: clamp(24px, 4vh, 56px) 0;
   }

@@ -1253,9 +1253,9 @@ video.screen-media {
   top: 0;
   left: 0;
   z-index: 90; /* above the page, below the nav (100) */
-  width: 640px;
-  height: 640px;
-  margin: -320px 0 0 -320px; /* center it on the mouse */
+  width: 440px;
+  height: 440px;
+  margin: -220px 0 0 -220px; /* center it on the mouse (half the size) */
   border-radius: 50%;
   background: radial-gradient(circle, var(--glow-color) 0%, transparent 65%);
   pointer-events: none; /* clicks go straight through it */
@@ -1268,4 +1268,44 @@ video.screen-media {
 
 .cursor-glow.is-on {
   opacity: 1;
+}
+
+/* =========================================================
+   FIT EACH SECTION IN ONE SCREEN (laptops and desktops)
+   (Leadership and Certifications are allowed to be taller.)
+   Sizes use vh (% of the screen height), so short screens
+   get slightly smaller content instead of scrolling.
+   ========================================================= */
+@media (min-width: 1025px) {
+  .section {
+    padding: clamp(28px, 5vh, 72px) 0;
+  }
+
+  .section-title {
+    margin-bottom: clamp(12px, 2.4vh, 24px);
+  }
+
+  /* --- Projects: smaller screen, highlights in 3 columns --- */
+  .projects-head {
+    margin-bottom: clamp(14px, 2.6vh, 28px);
+  }
+
+  .project-panel {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: clamp(14px, 2.4vh, 28px) 40px;
+  }
+
+  .screen {
+    /* video height ≈ 31% of the screen, width follows the 16:9 shape */
+    width: calc(min(31vh, 380px) * 16 / 9);
+  }
+
+  .highlights {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(8px, 1.6vh, 16px) 28px;
+    padding-top: clamp(12px, 2vh, 24px);
+    font-size: 0.86rem;
+    line-height: 1.45;
+  }
+
 }
