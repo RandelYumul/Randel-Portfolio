@@ -4,7 +4,7 @@ import Reveal from './Reveal.jsx'
 import '../skills.css'
 
 // Logos come from Devicon (free icon set), pinned to one version so they never change.
-// Skills not listed here show letters instead (e.g. "SQL", "REST APIs" → "RA").
+// Skills not listed here show letters instead (e.g. "SQL" → "SQL", "Unity Hub" → "UH").
 const ICON_BASE = 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons'
 const ICONS = {
   JavaScript: 'javascript',
@@ -40,7 +40,7 @@ function SkillIcon({ name }) {
 
   if (!slug || failed) {
     const words = name.replace(/[^A-Za-z0-9 ]/g, ' ').split(/\s+/).filter(Boolean)
-    // one word → first 3 letters ("SQL"), more words → first letters ("REST APIs" → "RA")
+    // one word → first 3 letters ("SQL"), more words → first letters ("Unity Hub" → "UH")
     const initials = (words.length === 1 ? words[0].slice(0, 3) : words.map((w) => w[0]).join('').slice(0, 2)).toUpperCase()
     return <span className="skill-initials">{initials}</span>
   }

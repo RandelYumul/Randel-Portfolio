@@ -1081,34 +1081,10 @@ video.screen-media {
 
 /* Small phones */
 @media (max-width: 480px) {
-  /* still 2 per row on phones, just tighter */
+  /* 1 per row on phones, so each certificate is big enough to read */
   .cert-grid {
-    gap: 10px;
-  }
-
-  .cert-thumb {
-    padding: 6px;
-  }
-
-  .cert-body {
-    padding: 10px 10px 12px;
-  }
-
-  .cert-body h3 {
-    font-size: 0.85rem;
-  }
-
-  .cert-meta {
-    font-size: 0.75rem;
-  }
-
-  .cert-date {
-    font-size: 0.68rem;
-  }
-
-  .cert-thumb-empty {
-    font-size: 0.8rem;
-    padding: 8px;
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .project-links .btn,

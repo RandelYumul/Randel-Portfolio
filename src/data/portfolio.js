@@ -15,7 +15,7 @@ export const profile = {
   location: 'Pampanga, Philippines',
   email: 'randel.angelo10@gmail.com',
   github: 'https://github.com/RandelYumul',
-  linkedin: 'https://www.linkedin.com/in/randel-yumul/',
+  linkedin: 'https://www.linkedin.com/in/yourusername',
   // CV: put your PDF at public/files/Randel-Yumul-CV.pdf (same name) and the
   // "Download CV" buttons work. Set to '' to hide the buttons.
   resume: 'files/Randel-Yumul-CV.pdf',
@@ -58,6 +58,13 @@ export const education = [
     place: 'Holy Angel University · Angeles City',
     date: 'Expected graduation: April 2027',
     details: "President's Lister for academic excellence · Academic Scholarship recipient",
+  },
+  {
+    // TODO: replace with your senior high school details
+    title: 'High School · Science, Technology, Engineering, and Mathematics (STEM)',
+    place: 'Angeles City Science High School · Angeles City',
+    date: '2016 – 2022',
+    details: 'Graduated With Highest Honor',
   },
 ]
 
@@ -159,19 +166,19 @@ export const certifications = [
   },
   {
     name: 'Learning Data Analytics: 1 Foundations',
-    issuer: 'LinkedIn',
+    issuer: 'LinkedIn Learning',
     date: 'Jun 2025',
-    image: '',
-    pdf: '',
-    link: '',
+    image: 'certificates/linkedin-learning-data-analytics-foundations.jpg',
+    pdf: 'certificates/linkedin-learning-data-analytics-foundations.pdf',
+    link: 'https://www.linkedin.com/learning/certificates/b6d6248de4abe2a94374c5304a1766ea6689b020e983a4502be09381a25d97cf',
   },
   {
-    name: 'Career Skills in Data Analytics',
-    issuer: 'LinkedIn',
-    date: 'Jun 2025',
-    image: '',
-    pdf: '',
-    link: '',
+    name: 'Introduction to Career Skills in Data Analytics (2022)',
+    issuer: 'LinkedIn Learning',
+    date: 'May 2025',
+    image: 'certificates/linkedin-career-skills-data-analytics.jpg',
+    pdf: 'certificates/linkedin-career-skills-data-analytics.pdf',
+    link: 'https://www.linkedin.com/learning/certificates/7dc14823c0b09c9c4e799806167b369910feb5f20a0eabd2b59302c1f5fb097e',
   },
   {
     name: 'Relational Database V8',
