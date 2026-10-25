@@ -48,7 +48,7 @@ export const about = [
   "I'm a Computer Science student at Holy Angel University.",
   'I love building things fast and building them for people. My hackathon work includes ALVIN, a disaster response app that placed 1st Runner-Up at the Cloudstaff AI Hackathon 2025, and AldawWave, a commute recommender that finished Top 10 out of 40 teams nationwide.',
   "My focus is frontend and UI work with React, Next.js, Tailwind, and Flutter, and I'm growing my backend skills with PostgreSQL and Supabase.",
-  'Outside of code, I lead and support student organizations like the AWS Learning Club and LOOP, and I enjoy gaming and music.',
+  'Outside of code, I lead and support student organizations like the AWS Learning Club, Student Council, and LOOP.',
 ]
 
 // Newest first.
