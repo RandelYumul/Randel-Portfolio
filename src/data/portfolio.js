@@ -16,9 +16,8 @@ export const profile = {
   email: 'randel.angelo10@gmail.com',
   github: 'https://github.com/RandelYumul',
   linkedin: 'https://www.linkedin.com/in/randel-yumul/',
-  // CV: put your PDF at public/files/Randel-Yumul-CV.pdf, then change this to
-  // 'files/Randel-Yumul-CV.pdf' and the "Download CV" buttons appear.
-  // Empty for now so visitors never click a broken link.
+  // CV: the PDF in public/files/. The "View CV" buttons open it in a new tab.
+  // Set to '' to hide the buttons.
   resume: 'files/Randel-Yumul-CV.pdf',
 
   // HERO IMAGES (put the files in /public/images/)
@@ -485,11 +484,69 @@ export const projects = [
     video: 'projects/virtuohero.mp4',
     image: '',
   },
+  {
+    title: 'HAU Monster Hunter',
+    badges: ['Team of 4', 'Backend', 'Flutter', 'AWS', 'Mar 2026'],
+    description:
+      'A location-based monster hunting game with a retro pixel look: players walk to real-world spots on a live map to catch monsters, build a collection, and climb a global leaderboard.',
+    highlights: [
+      {
+        label: 'My Role',
+        text: 'Backend Developer on a team of 4, working on the REST API and the AWS cloud setup behind the app.',
+      },
+      {
+        label: 'REST API & Login',
+        text: 'JWT-secured endpoints for players, monsters, catches, the leaderboard, password reset, and account deletion.',
+      },
+      {
+        label: 'Server-Checked Catches',
+        text: 'Every capture is validated by the backend, so players must really be inside the monster\'s spawn radius.',
+      },
+      {
+        label: 'Multi-Region AWS',
+        text: 'API server in Paris and database in North Virginia, linked by private VPC peering so database traffic never touches the public internet.',
+      },
+      {
+        label: 'Zero-Trust & Cost Control',
+        text: 'Servers are hidden behind a Tailscale VPN, admins can start and stop EC2 instances from the app, and CloudWatch monitors server health.',
+      },
+    ],
+    links: [{ label: 'View repo', url: 'https://github.com/JReshley/HAU-Pokemon-Game' }],
+    video: '',
+    image: '', // no project image in the repo, so GitHub's preview card is shown
+  },
+  {
+    title: 'sKEEP',
+    badges: ['Mobile App', 'Flutter', 'Dart', 'Sep 2025'],
+    description:
+      'A mobile inventory app for small school-supply stores that tracks stock, prices, and suppliers right on the phone, with no internet needed.',
+    highlights: [
+      {
+        label: 'Stock Dashboard',
+        text: 'Shows total stock, how many items are running low (under 20), and the total value of the inventory at a glance.',
+      },
+      {
+        label: 'Product Management',
+        text: 'Add and edit products with name, supplier, unit, price, quantity, and a product photo.',
+      },
+      {
+        label: 'Transaction History',
+        text: 'Every stock change is recorded, with search and sorting to quickly find past changes.',
+      },
+      {
+        label: 'Works Offline',
+        text: 'Products and history are saved as files on the device, with login, sign-up, and a profile page.',
+      },
+    ],
+    links: [{ label: 'View repo', url: 'https://github.com/RandelYumul/sKEEP' }],
+    video: '',
+    image: 'projects/skeep.jpg',
+  },
 ]
 
 export const skills = [
   { group: 'Languages', items: ['JavaScript', 'Python', 'Java', 'Dart', 'HTML', 'CSS'] },
-  { group: 'Frameworks', items: ['React', 'Next.js', 'Tailwind CSS', 'Flutter', 'Express', 'Godot 4'] },
+  { group: 'Frameworks', items: ['React', 'Next.js', 'Tailwind CSS', 'Flutter', 'Godot 4'] },
   { group: 'Databases & Backend', items: ['PostgreSQL', 'SQL', 'Supabase'] },
   { group: 'Tools & Design', items: ['Git', 'GitHub', 'Figma', 'VS Code'] },
   {

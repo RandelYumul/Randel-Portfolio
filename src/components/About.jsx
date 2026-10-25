@@ -28,9 +28,10 @@ export default function About() {
               <a
                 href={asset(profile.resume)}
                 className="btn btn-primary"
-                download // tells the browser to save the file instead of opening it
+                target="_blank" // open the PDF in a new tab instead of downloading it
+                rel="noreferrer" // safety: the new tab can't control this page
               >
-                Download CV ↓
+                View CV ↗
               </a>
               <a href="#contact" className="btn btn-outline">
                 Get in touch

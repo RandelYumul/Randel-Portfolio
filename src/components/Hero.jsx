@@ -50,11 +50,6 @@ export default function Hero() {
         <div className="hero-actions">
           <a href="#projects" className="btn btn-primary">View my work</a>
           <a href="#contact" className="btn btn-outline">Contact me</a>
-          {profile.resume && (
-            <a href={asset(profile.resume)} className="btn btn-outline" download>
-              Download CV
-            </a>
-          )}
         </div>
 
         {/* Tilted photo card with a spinning "scroll" badge */}
