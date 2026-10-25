@@ -1,3 +1,0 @@
-Put your CV here, named exactly:  Randel-Yumul-CV.pdf
-(Or change "resume" in src/data/portfolio.js to match your file name.)
-You can delete this note after.

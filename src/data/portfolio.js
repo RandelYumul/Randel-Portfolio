@@ -15,9 +15,10 @@ export const profile = {
   location: 'Pampanga, Philippines',
   email: 'randel.angelo10@gmail.com',
   github: 'https://github.com/RandelYumul',
-  linkedin: 'https://www.linkedin.com/in/yourusername',
-  // CV: put your PDF at public/files/Randel-Yumul-CV.pdf (same name) and the
-  // "Download CV" buttons work. Set to '' to hide the buttons.
+  linkedin: 'https://www.linkedin.com/in/randel-yumul/',
+  // CV: put your PDF at public/files/Randel-Yumul-CV.pdf, then change this to
+  // 'files/Randel-Yumul-CV.pdf' and the "Download CV" buttons appear.
+  // Empty for now so visitors never click a broken link.
   resume: 'files/Randel-Yumul-CV.pdf',
 
   // HERO IMAGES (put the files in /public/images/)
@@ -28,7 +29,7 @@ export const profile = {
   photo: 'images/Randel-main.jpg',          // e.g. 'images/profile.jpg'
   // ABOUT SECTION PHOTO (right side). Use a DIFFERENT photo from the home card,
   // e.g. you at a hackathon or with your org. Leave '' to show only the text.
-  aboutPhoto: 'images/Randel-about.png',     // e.g. 'images/about.jpg'
+  aboutPhoto: 'images/Randel-about.jpg',     // e.g. 'images/about.jpg'
 }
 
 // The order here = the order in the nav.
@@ -47,7 +48,7 @@ export const navLinks = [
 export const about = [
   "I'm a Computer Science student at Holy Angel University.",
   'I love building things fast and building them for people. My hackathon work includes ALVIN, a disaster response app that placed 1st Runner-Up at the Cloudstaff AI Hackathon 2025, and AldawWave, a commute recommender that finished Top 10 out of 40 teams nationwide.',
-  "My focus is frontend and UI work with React, Next.js, Tailwind, and Flutter, and I'm growing my backend skills with PostgreSQL, Supabase, and REST APIs.",
+  "My focus is frontend and UI work with React, Next.js, Tailwind, and Flutter, and I'm growing my backend skills with PostgreSQL and Supabase.",
   'Outside of code, I lead and support student organizations like the AWS Learning Club and LOOP, and I enjoy gaming and music.',
 ]
 
@@ -60,7 +61,6 @@ export const education = [
     details: "President's Lister for academic excellence · Academic Scholarship recipient",
   },
   {
-    // TODO: replace with your senior high school details
     title: 'High School · Science, Technology, Engineering, and Mathematics (STEM)',
     place: 'Angeles City Science High School · Angeles City',
     date: '2016 – 2022',
@@ -297,13 +297,15 @@ export const projects = [
         text: 'A directory of reachable hotlines, a user-initiated SOS button, and a system-initiated SMS that checks on users even without internet.',
       },
     ],
-    links: [{ label: 'View repo', url: 'https://github.com/jimvdz/cs-hackathon' }],
+    // repo is private, so the button is hidden. Paste the URL back if it becomes public:
+    // https://github.com/jimvdz/cs-hackathon
+    links: [{ label: 'View repo', url: '' }],
     video: '',
     image: 'projects/alvin.jpg',
   },
   {
     title: 'AldawWave',
-    badges: ['Competition', 'Top 10 of 40', 'Gemini API', 'Google Maps'],
+    badges: ['Competition', 'Top 10 of 40', 'Python · Flask', 'Gemini API', 'Google Maps'],
     description:
       'A data-driven commute recommender web app that helps commuters avoid heat stress by suggesting the best time to leave, built over Sep – Nov 2025.',
     highlights: [
@@ -319,8 +321,12 @@ export const projects = [
         label: 'AI Recommendations',
         text: 'Helped implement the Google Gemini API to give personalized travel tips based on real-time heat index forecasts and crowd density.',
       },
+      {
+        label: 'Top 5 Departure Times',
+        text: 'Checks a 10-hour window before your target arrival and ranks the 5 safest departure times by expected heat index, with a 24-hour heat index graph.',
+      },
     ],
-    links: [], // add a repo or live link here if you have one
+    links: [{ label: 'View repo', url: 'https://github.com/RandelYumul/AldawWave' }],
     video: '',
     image: '',
   },
@@ -439,7 +445,9 @@ export const projects = [
         text: 'Create or join an organization, with admin and member roles, email or Google sign-in, and a dark mode that remembers your choice.',
       },
     ],
-    links: [{ label: 'View repo', url: 'https://github.com/JReshley/FundBuddy' }],
+    // repo is private, so the button is hidden. Paste the URL back if it becomes public:
+    // https://github.com/JReshley/FundBuddy
+    links: [{ label: 'View repo', url: '' }],
     video: 'projects/fundbuddy.mp4',
     image: '',
   },
