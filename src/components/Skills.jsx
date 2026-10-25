@@ -84,7 +84,11 @@ export default function Skills() {
               type="button"
               className={tab === filter ? 'skill-tab active' : 'skill-tab'}
               aria-pressed={tab === filter}
-              onClick={() => setFilter(tab)}
+              onClick={(e) => {
+                setFilter(tab)
+                // phones: slide the swipeable tab row so the chosen tab is fully visible
+                e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' })
+              }}
             >
               {tab}
             </button>
@@ -92,7 +96,8 @@ export default function Skills() {
         </Reveal>
 
         {/* The boxes. key={filter} re-creates the grid, so the pop-in animation replays on every tab change */}
-        <Reveal delay={200}>
+        {/* full-width wrapper so box sizes never depend on how many skills are showing */}
+        <Reveal className="skill-grid-wrap" delay={200}>
           <ul className="skill-grid" key={filter}>
             {shown.map(({ item, group }, i) => (
               <li
