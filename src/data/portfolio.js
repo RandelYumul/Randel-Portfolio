@@ -327,7 +327,7 @@ export const projects = [
     ],
     links: [{ label: 'View repo', url: 'https://github.com/RandelYumul/AldawWave' }],
     video: '',
-    image: '',
+    image: 'projects/aldawwave.jpg', // AldawWave logo from the repo
   },
   {
     title: 'Truth in Tales',
@@ -415,7 +415,7 @@ export const projects = [
     ],
     links: [{ label: 'View repo', url: 'https://github.com/RandelYumul/Capysaur' }],
     video: '', // tip: a short gameplay clip looks great here
-    image: '',
+    image: 'projects/capysaur.jpg', // AWS Learning Club badge + the game's own pixel art
   },
   {
     title: 'FundBuddy',

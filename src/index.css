@@ -23,8 +23,8 @@
   --card: #163832;        /* project cards */
   --border: #235347;      /* lines, borders */
   --text: #daf1de;        /* main text */
-  --muted: #8eb69b;       /* secondary text */
-  --primary: #8eb69b;     /* buttons, links, accents */
+  --muted: #b0d1b9;       /* secondary text (brightened for readability: 7.7:1+ on every dark background) */
+  --primary: #a9cbb2;     /* buttons, links, accents (7.2:1+ when used as text) */
   --primary-hover: #daf1de;
   --on-primary: #051f20;  /* text that sits ON a primary button */
   --success: #8eb69b;
@@ -353,8 +353,8 @@ section {
 }
 
 .project-tab-num {
-  font-size: 0.7rem;
-  opacity: 0.7;
+  font-size: 0.72rem;
+  opacity: 0.85; /* was 0.7, too faint to read */
 }
 
 /* Screen on the left, summary on the right, highlights underneath */
@@ -483,7 +483,7 @@ video.screen-media {
   border: 1px solid var(--border);
   background: color-mix(in srgb, var(--primary) 12%, transparent);
   color: var(--primary);
-  font-size: 0.7rem;
+  font-size: 0.74rem; /* small uppercase labels need a bit more size */
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;

@@ -505,3 +505,10 @@
     font-size: clamp(3rem, 7vh, 6rem);
   }
 }
+
+/* Dark mode: a soft dark glow behind the text keeps it readable
+   even when a bright part of the background photo sits behind it */
+[data-theme='dark'] .hero-tagline,
+[data-theme='dark'] .hero-title {
+  text-shadow: 0 2px 18px rgba(5, 31, 32, 0.85);
+}
