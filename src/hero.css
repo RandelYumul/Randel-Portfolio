@@ -512,3 +512,11 @@
 [data-theme='dark'] .hero-title {
   text-shadow: 0 2px 18px rgba(5, 31, 32, 0.85);
 }
+
+/* The typed line is a gradient seen THROUGH transparent letters, so a
+   text-shadow would show inside the letters and muddy the gradient.
+   drop-shadow draws the glow behind the finished letters instead. */
+[data-theme='dark'] .hero-typing-text {
+  text-shadow: none;
+  filter: drop-shadow(0 2px 14px rgba(5, 31, 32, 0.8));
+}
