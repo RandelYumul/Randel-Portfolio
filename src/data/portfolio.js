@@ -5,7 +5,7 @@ export const profile = {
   name: 'Randel Yumul',
   initials: 'RALY',
   role: 'Computer Science Student & Frontend Developer',
-  tagline: 'I build web and mobile apps, from award-winning hackathon prototypes to full-stack projects, and I am growing my backend and API skills.',
+  tagline: 'I build web and mobile applications, from hackathon prototypes that explore creative ideas and solutions to full-stack projects. I’m continuously developing my frontend, backend, and API development skills as I work toward becoming a full-stack developer.',
 
   // HOME SECTION TEXT
   intro: "Hi! I'm Randel Yumul · Based in Pampanga, PH", // small pill above the big title
@@ -46,9 +46,9 @@ export const navLinks = [
 
 export const about = [
   "I'm a Computer Science student at Holy Angel University.",
-  'I love building things fast and building them for people. My hackathon work includes ALVIN, a disaster response app that placed 1st Runner-Up at the Cloudstaff AI Hackathon 2025, and AldawWave, a commute recommender that finished Top 10 out of 40 teams nationwide.',
-  "My focus is frontend and UI work with React, Next.js, Tailwind, and Flutter, and I'm growing my backend skills with PostgreSQL and Supabase.",
-  'Outside of code, I lead and support student organizations like the AWS Learning Club and LOOP.',
+  'I enjoy developing meaningful solutions to real-world problems, taking the time to understand each project and turn ideas into practical applications. My hackathon projects include ALVIN, a disaster response app, and AldawWave, a commute recommender system.',
+  "My focus is frontend development and UI design using React, Next.js, Tailwind CSS, and Flutter. I'm continuously developing my backend and API skills with technologies like PostgreSQL and Supabase as I work toward becoming a full-stack developer.",
+  'Beyond coding, I participate in student organizations such as the AWS Learning Club and LOOP to strengthen my teamwork, leadership, communication, and collaboration skills while contributing to the university community.',
 ]
 
 // Newest first.
